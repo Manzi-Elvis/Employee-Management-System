@@ -38,3 +38,14 @@ router.put('/:id' , async (req, res) => {
             res.status(400).json({success: false, message: err.message});
       }
 });
+// Deleting a department
+router.delete('/:id' , async (req, res) => {
+      try{
+            await Department.findByIdAndDelete(req.params.id);
+            res.json({success: true, message: 'Department deleted successfully'});
+      }
+      catch(err){
+            res.status(400).json({success: false, message: err.message});
+      }
+});
+module.exports = router;
