@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const EmpSchema = new mongoose.Schemana({
+const EmpSchema = new mongoose.Schema({
       name: {
           type: String,
           required: true,
