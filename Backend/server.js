@@ -12,11 +12,11 @@ app.use(cors());
 app.use(express.json())
 
 const db = mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('MONGO DB CONNECTED!!!!!!!!!'))
+  .then(() => console.log('MongoDB CONNECTED!!!!!!!!!'))
   .catch(err => console.error(error))
 
-app.use('./api/departments', departmentRoutes);
-app.use('./api/employees', employeeRoutes);
+app.use('./departments', departmentRoutes);
+app.use('./employees', employeeRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server Running on port: ${port}`))
