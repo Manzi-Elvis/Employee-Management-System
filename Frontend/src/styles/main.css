@@ -1,0 +1,24 @@
+*{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe
+UI', Roboto, 'Helvetica Neue', Arial;}
+body{margin:0;background:#f5f7fb;color:#111}
+.container{max-width:1100px;margin:24px auto;padding:
+16px;background:#fff;border-radius:8px;box-shadow:0 6px 18px rgba(20,20,40,
+0.06)}
+.nav{display:flex;gap:12px;padding:12px24px;background:#0f172a;color:#fff;align-items:center}
+.nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:6px}
+.nav a:hover{background:rgba(255,255,255,0.06)}
+.form-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.input,select,textarea{padding:8px;border-radius:6px;border:1px solid
+#dbe4f0;min-width:200px}
+.btn{padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
+.btn-primary{background:#0ea5a4;color:#fff}
+.btn-danger{background:#ef4444;color:#fff}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:8px;text-align:left;border-bottom:1px solid #eef2f7}
+.card{padding:12px;border-radius:8px;background:#ffffff}
+.error{color:#ef4444;margin-top:8px}
+.small{font-size:0.9rem;color:#667085}
+.pagination{display:flex;gap:8px;align-items:center;margin-top:12px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;alignitems:center;justify-content:center}
+.modal .panel{background:#fff;padding:16px;border-radius:8px;max-width:
+900px;width:100%;}
