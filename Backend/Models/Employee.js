@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const EmpSchema = new mongoose.Schema({
+const EmployeeSchema = new mongoose.Schema({
       name: {
           type: String,
           required: true,
@@ -9,15 +9,9 @@ const EmpSchema = new mongoose.Schema({
           required: true,
           unique: true
       },
-      position: {
-            type: String,
-      },
-      salary: {
-            type: Number,
-      },
       departmentId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Department'
       }
-});
-module.exports = mongoose.model('Employee', EmpSchema);
+}, { timestamps: true });
+module.exports = mongoose.model('Employee', EmployeeSchema);
