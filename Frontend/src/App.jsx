@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Signup from './pages/SignUp';
 import Departments from './pages/Departments';
 import Employees from './pages/Employees';
 import Navbar from './components/Navbar';
@@ -12,6 +13,7 @@ export default function App(){
       <Navbar />
         <Routes>
           <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
           <Route path="/departments" element={<ProtectedRoute><Departments/></ProtectedRoute>} />
           <Route path="/employees" element={<ProtectedRoute><Employees/></ProtectedRoute>} />
