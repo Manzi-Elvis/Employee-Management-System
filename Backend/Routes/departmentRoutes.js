@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const Department = require('../Models/Department');
 
 // Get all departments
