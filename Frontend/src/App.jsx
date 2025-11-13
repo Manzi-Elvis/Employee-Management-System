@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import DepartmentList from './components/DepartmentList.jsx'
-import DepartmentForm from './components/DepartmentForm.jsx'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Employees from './pages/Employees';
+import Departments from './pages/Departments';
 
 function App() {
-  const [refresh, setRefresh] = useState(false);
-  const handleRefresh = () => setRefresh(!refresh);
   return (
-    <div className=''App>
-      <h1>Employee Management System</h1>
-      <DepartmentForm onAdd={handleRefresh} />
-      <DepartmentList refresh={refresh} />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/departments" element={<Departments />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
