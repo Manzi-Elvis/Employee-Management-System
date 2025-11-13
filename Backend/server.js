@@ -1,22 +1,34 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv')
+const connectDB = require('./config/db');
+const morgan = require('morgan');
+const dotenv = require('dotenv').config();
 const cors = require('cors')
-const departmentRoutes = require('./Routes/departmentRoutes')
-const employeeRoutes = require('./Routes/employeeRoutes')
-
-dotenv.config();
+const authRoutes = require('./routes/auth');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const deptRoutes = require('./routes/departments');
+const empRoutes = require('./routes/employees');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json())
 
-const db = mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('MongoDB CONNECTED!!!!!!!!!'))
-  .catch(err => console.error(error))
+app.use('/api/auth', authRoutes);
+app.use('/api/departments', deptRoutes);
+app.use('/api/employees', empRoutes);
+app.use(errorHandler);
 
-app.use('./departments', departmentRoutes);
-app.use('./employees', employeeRoutes);
+const PORT = process.env.PORT || 5000;
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server Running on port: ${port}`))
+connectDB(process.env.MONGO_URI).then(() => {
+      app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+      });
+}
+).catch(err => {
+      console.error('Failed to connect to database', err);
+});
+
+module.exports = app;
