@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function DepartmentForm({ onAdd }) {
+export default function DepartmentForm({ onSave, editing }) {
       const [name, setName] = useState("");
-      const handleSubmit = async (e) => {
+      useEffect(()=>{ 
+            if(editing) setName(editing.department_name || ''); 
+           else setName(''); },[editing]
+      );
+
+      const submit = async (e) => {
             e.preventDefault();
-            if (!name) return;
-            await axios.post("http://localhost:5000/api/departments", { department_name: name });
+            if (!name.trim()) return;
+            onSave({ department_name: name.trim() });
             setName("");
-            if (onAdd) onAdd();
       };
       return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submit}>
                   <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Department Name" />
-                  <button type="submit">Add Department</button>
+                  <div style={{display: 'flex', gap:8}}>
+                        <button className="btn btn-primary" type="submit">{editing ? "Update Department" : "Add Department"}</button>
+                  </div>
             </form>
       );
 };
