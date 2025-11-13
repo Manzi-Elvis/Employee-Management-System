@@ -13,11 +13,13 @@ export default function Signup() {
     e.preventDefault();
     setError('');
     try {
-      await API.post('/auth/register', { name, email, password });
-      navigate('/login');
+      const res = await API.post('/auth/register', { name, email, password });
+      localStorage.setItem('token', res.data.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.data));
+      navigate('/');
     } catch (err) {
-      console.error('Signup error:', err);
-      setError(err?.response?.data?.message || 'Failed to register.');
+      console.error(err);
+      setError(err?.response?.data?.error || 'Registration failed.');
     }
   };
 
@@ -59,7 +61,7 @@ export default function Signup() {
         <button
           type="submit"
           style={{
-            background: '#007bff',
+            background: '#28a745',
             color: '#fff',
             padding: '10px 16px',
             border: 'none',
@@ -67,7 +69,7 @@ export default function Signup() {
             cursor: 'pointer',
           }}
         >
-          Register
+          Sign Up
         </button>
       </form>
       <p style={{ marginTop: 12 }}>
