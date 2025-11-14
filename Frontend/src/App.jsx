@@ -12,9 +12,9 @@ export default function App(){
     <BrowserRouter>
       <Navbar />
         <Routes>
-          <Route path="/login" element={<Login/>} />
+          <Route path="/" element={<Login/>} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
           <Route path="/departments" element={<ProtectedRoute><Departments/></ProtectedRoute>} />
           <Route path="/employees" element={<ProtectedRoute><Employees/></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
